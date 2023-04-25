@@ -1,9 +1,9 @@
 int red = 10;
-int yellow = 9;
-int green = 8;
-int button = 13;
+int yellow =   9;
+int green = 8 ;
+int button = 12;
 
-//test
+
 
 void setup() {
 
@@ -24,7 +24,7 @@ void loop(){
    delay(15);
      if(digitalRead(button) == HIGH){
      changeLights();
-   delay(15000);
+     delay(15000);
    }
   
     
