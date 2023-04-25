@@ -23,7 +23,7 @@ void setup() {
 void loop(){
   
  Serial.println(digitalRead(button));
-
+  digitalWrite(green,digitalRead(button));
 }
     
 
