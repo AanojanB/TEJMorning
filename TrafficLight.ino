@@ -2,7 +2,7 @@ int red = 10;
 int yellow =   9;
 int green = 8 ;
 
-
+int buzzer = 7;
 
 int button = 12;
 
@@ -15,7 +15,7 @@ void setup() {
   pinMode(yellow, OUTPUT);
   pinMode(green, OUTPUT);
 
-
+  pinMode(buzzer, OUTPUT);
 
   pinMode(button, INPUT);
 
@@ -33,6 +33,8 @@ void loop(){
      //delay(15000);
    }
   }
+
+  digitalWrite(button, digitalRead(green));
   
   }
 
