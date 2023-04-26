@@ -2,7 +2,7 @@ int red = 10;
 int yellow =   9;
 int green = 8 ;
 
-int buzzer = 7;
+int buzzer = 13;
 
 int button = 12;
 
@@ -20,12 +20,14 @@ void setup() {
   pinMode(button, INPUT);
 
   digitalWrite(green, HIGH);
+  digitalWrite(buzzer, HIGH);
   
 
 }
 
 void loop(){
 
+  
   if(digitalRead(button) == HIGH){
    delay(15);
      if(digitalRead(button) == HIGH){
@@ -34,13 +36,14 @@ void loop(){
    }
   }
 
-  digitalWrite(button, digitalRead(green));
+
   
   }
 
 void changeLights() {
 
   digitalWrite(green, LOW);
+  digitalWrite(buzzer, LOW);
   digitalWrite(yellow, HIGH);
   delay(3000);
 
@@ -55,6 +58,7 @@ void changeLights() {
   digitalWrite(red, LOW);
   digitalWrite(yellow, LOW);
   digitalWrite(green, HIGH);
+    digitalWrite(buzzer, HIGH);
   //delay(3000);
 
 }
