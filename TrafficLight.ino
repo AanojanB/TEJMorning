@@ -1,7 +1,11 @@
 int red = 10;
 int yellow =   9;
 int green = 8 ;
+
+
+
 int button = 12;
+
 
 
 
@@ -10,6 +14,8 @@ void setup() {
   pinMode(red, OUTPUT);
   pinMode(yellow, OUTPUT);
   pinMode(green, OUTPUT);
+
+
 
   pinMode(button, INPUT);
 
@@ -26,9 +32,7 @@ void loop(){
      changeLights();
      //delay(15000);
    }
-  
-    
-    }
+  }
   
   }
 
@@ -49,6 +53,6 @@ void changeLights() {
   digitalWrite(red, LOW);
   digitalWrite(yellow, LOW);
   digitalWrite(green, HIGH);
-  delay(3000);
+  //delay(3000);
 
 }
