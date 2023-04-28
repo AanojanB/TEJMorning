@@ -27,9 +27,10 @@ void setup() {
 
   digitalWrite(red, HIGH);
   digitalWrite(buzzer, LOW);
-  analogWrite(r,255);  
-  analogWrite(g,128);
-  analogWrite(b,0);
+    analogWrite(r,200);  
+  analogWrite(g,200);
+  analogWrite(b,200);
+
 }
 
 void loop(){
@@ -49,18 +50,14 @@ void loop(){
 
 void changeLights() {
 
-  digitalWrite(red, LOW);
-  digitalWrite(yellow, HIGH);
-  analogWrite(r,255);  
-  analogWrite(g,128);
-  analogWrite(b,0);
-  delay(3000);
 
-  digitalWrite(yellow, LOW);
+
+
+  digitalWrite(red, LOW);
   digitalWrite(green, HIGH);
-  analogWrite(r,130);  
-  analogWrite(g,130);
-  analogWrite(b, 130);
+  analogWrite(r,200);  
+  analogWrite(g,200);
+  analogWrite(b, 200);
   digitalWrite(buzzer, HIGH);
   delay(5000);
 
@@ -69,12 +66,12 @@ void changeLights() {
   analogWrite(r,255);  
   analogWrite(g,128);
   analogWrite(b,0);
-  digitalWrite(buzzer, LOW);
+    digitalWrite(buzzer, LOW);
   delay(2000);
 
-  digitalWrite(red, HIGH);
+
   digitalWrite(yellow, LOW);
- 
+  digitalWrite(red, HIGH);
 
   delay(3000);
 
