@@ -25,12 +25,11 @@ void setup() {
   pinMode(r,OUTPUT);
     pinMode(r,OUTPUT);
 
-  digitalWrite(green, HIGH);
-  digitalWrite(buzzer, HIGH);
-    analogWrite(r,200);  
-  analogWrite(g,200);
-  analogWrite(b,200);
-
+  digitalWrite(red, HIGH);
+  digitalWrite(buzzer, LOW);
+  analogWrite(r,255);  
+  analogWrite(g,128);
+  analogWrite(b,0);
 }
 
 void loop(){
@@ -40,7 +39,7 @@ void loop(){
    delay(15);
      if(digitalRead(button) == HIGH){
      changeLights();
-     //delay(15000);
+     delay(15000);
    }
   }
 
@@ -50,8 +49,7 @@ void loop(){
 
 void changeLights() {
 
-  digitalWrite(green, LOW);
-  digitalWrite(buzzer, LOW);
+  digitalWrite(red, LOW);
   digitalWrite(yellow, HIGH);
   analogWrite(r,255);  
   analogWrite(g,128);
@@ -59,20 +57,25 @@ void changeLights() {
   delay(3000);
 
   digitalWrite(yellow, LOW);
-  digitalWrite(red, HIGH);
+  digitalWrite(green, HIGH);
+  analogWrite(r,130);  
+  analogWrite(g,130);
+  analogWrite(b, 130);
+  digitalWrite(buzzer, HIGH);
   delay(5000);
 
   digitalWrite(yellow, HIGH);
-  digitalWrite(red, LOW);
+  digitalWrite(green, LOW);
+  analogWrite(r,255);  
+  analogWrite(g,128);
+  analogWrite(b,0);
+  digitalWrite(buzzer, LOW);
   delay(2000);
 
-  digitalWrite(red, LOW);
+  digitalWrite(red, HIGH);
   digitalWrite(yellow, LOW);
-  digitalWrite(green, HIGH);
-  analogWrite(r,200);  
-  analogWrite(g,200);
-  analogWrite(b, 200);
-  digitalWrite(buzzer, HIGH);
-  //delay(3000);
+ 
+
+  delay(3000);
 
 }
