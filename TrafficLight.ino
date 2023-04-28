@@ -6,7 +6,9 @@ int buzzer = 13;
 
 int button = 12;
 
-
+int b = 7;
+int g = 6;
+int r = 5;
 
 
 void setup() {
@@ -19,9 +21,15 @@ void setup() {
 
   pinMode(button, INPUT);
 
+  pinMode(r,OUTPUT);
+  pinMode(r,OUTPUT);
+    pinMode(r,OUTPUT);
+
   digitalWrite(green, HIGH);
   digitalWrite(buzzer, HIGH);
-  
+    analogWrite(r,200);  
+  analogWrite(g,200);
+  analogWrite(b,200);
 
 }
 
@@ -45,6 +53,9 @@ void changeLights() {
   digitalWrite(green, LOW);
   digitalWrite(buzzer, LOW);
   digitalWrite(yellow, HIGH);
+  analogWrite(r,255);  
+  analogWrite(g,128);
+  analogWrite(b,0);
   delay(3000);
 
   digitalWrite(yellow, LOW);
@@ -58,7 +69,10 @@ void changeLights() {
   digitalWrite(red, LOW);
   digitalWrite(yellow, LOW);
   digitalWrite(green, HIGH);
-    digitalWrite(buzzer, HIGH);
+  analogWrite(r,200);  
+  analogWrite(g,200);
+  analogWrite(b, 200);
+  digitalWrite(buzzer, HIGH);
   //delay(3000);
 
 }
