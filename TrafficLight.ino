@@ -10,6 +10,7 @@ int b = 7;
 int g = 6;
 int r = 5;
 
+boolean buzzerOn;
 
 void setup() {
 
@@ -23,30 +24,35 @@ void setup() {
 
   pinMode(r,OUTPUT);
   pinMode(r,OUTPUT);
-    pinMode(r,OUTPUT);
+  pinMode(r,OUTPUT);
+    
+  buzzerOn = false;
 
   digitalWrite(red, HIGH);
-  digitalWrite(buzzer, LOW);
-    analogWrite(r,200);  
-  analogWrite(g,200);
-  analogWrite(b,200);
+  
+
+  analogWrite(r,255);  
+  analogWrite(g,128);
+  analogWrite(b,0);
+  
+  Serial.begin(9600);
 
 }
 
 void loop(){
 
-  
+  Serial.println(buzzerOn);
+
+
   if(digitalRead(button) == HIGH){
    delay(15);
      if(digitalRead(button) == HIGH){
      changeLights();
-     delay(15000);
+     //delay(15000);
    }
   }
 
-
-  
-  }
+}
 
 void changeLights() {
 
@@ -58,8 +64,14 @@ void changeLights() {
   analogWrite(r,200);  
   analogWrite(g,200);
   analogWrite(b, 200);
+  for(int i = 0; i < 10; i++){
+
   digitalWrite(buzzer, HIGH);
-  delay(5000);
+  delay(300);
+  digitalWrite(buzzer, LOW);
+  delay(200);
+  }
+  
 
   digitalWrite(yellow, HIGH);
   digitalWrite(green, LOW);
@@ -73,6 +85,5 @@ void changeLights() {
   digitalWrite(yellow, LOW);
   digitalWrite(red, HIGH);
 
-  delay(3000);
 
 }
