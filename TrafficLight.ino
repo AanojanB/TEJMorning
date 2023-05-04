@@ -6,13 +6,14 @@ int red = 10;
 int yellow =   9;
 int green = 8 ;
 
+
 int buzzer = 13;
 
 int button = 6;
 
-int b = A0;
-int g = A1;
-int r = A2;
+int r = A3;
+int g = A4;
+int b = A5;
 
 boolean buzzerOn;
 
@@ -42,6 +43,19 @@ byte Hand[8] =
 0b00000
 };
 
+
+byte Arrow[8] =
+{
+0b00000,
+0b00000,
+0b00010,
+0b11111,
+0b00010,
+0b00000,
+0b00000,
+0b00000
+};
+
 void setup() {
 
   lcd.begin(16, 2);
@@ -51,7 +65,12 @@ void setup() {
   
   lcd.createChar(1, Hand);
 
+    lcd.createChar(2, Arrow);
+
   lcd.clear();
+  lcd.setCursor(0,1);
+  lcd.write(byte(1));
+  
 
   pinMode(red, OUTPUT);
   pinMode(yellow, OUTPUT);
@@ -70,8 +89,8 @@ void setup() {
   digitalWrite(red, HIGH);
   
 
-  analogWrite(r,255);  
-  analogWrite(g,127);
+  analogWrite(r,0);  
+  analogWrite(g,0);
   analogWrite(b,0);
   
   Serial.begin(9600);
@@ -96,56 +115,63 @@ void loop(){
 }
 
 void changeLights() {
-
-  for(int i = 0; i < 10; i++){
-
-
-  digitalWrite(buzzer, HIGH);
-  delay(300);
-  digitalWrite(buzzer, LOW);
-  delay(200);
-  }
+   
 
 
   digitalWrite(red, LOW);
   digitalWrite(green, HIGH);
-  analogWrite(r,200);  
-  analogWrite(g,200);
-  analogWrite(b, 200);
+  analogWrite(r,0);  
+  analogWrite(g,255);
+  analogWrite(b,0);
   
+  lcd.setCursor(0,1);
+  lcd.write(byte(2));
+
+  delay(5000);
+
+  analogWrite(r,200);  
+  analogWrite(g,255);
+  analogWrite(b,0);
+    lcd.clear();
   lcd.setCursor(0,1);
   lcd.write(byte(0));
 
   delay(5000);
 
-  
-  
-   for(int i = 10; i > 0; i--){
+  lcd.clear();
+  lcd.setCursor(0,1);
+  lcd.write(byte(0));
 
-    for(int j = 10; j > 0; j--){
-      lcd.clear();
-      lcd.setCursor(0,0);
-      lcd.print(i);
-      lcd.setCursor(0,1);
-      lcd.write(byte(1));
-      delay(40);
-      lcd.clear();
-      lcd.setCursor(0,0);
-      lcd.print(i);
-      delay(60);
-    
-    }
-   }
+   for(int i = 10; i > 0; i--){
+  digitalWrite(buzzer, HIGH);
+  lcd.clear();
+  lcd.setCursor(0,1);
+  lcd.write(byte(1));
+  lcd.setCursor(0,0);
+  analogWrite(r,0);  
+  analogWrite(g,0);
+  analogWrite(b,0);
+  lcd.print(i);
+  delay(300);
+  lcd.clear();
+  lcd.setCursor(0,0);
+  lcd.print(i);
+  digitalWrite(buzzer, LOW);
+  delay(200);
+  }
   
   
 
   digitalWrite(yellow, HIGH);
   digitalWrite(green, LOW);
-  analogWrite(r,255);  
-  analogWrite(g,127);
+  analogWrite(r,0);  
+  analogWrite(g,0);
   analogWrite(b,0);
     digitalWrite(buzzer, LOW);
-    lcd.clear();
+  lcd.clear();
+  lcd.setCursor(0,1);
+  lcd.write(byte(1));
+  
   delay(2000);
 
 
