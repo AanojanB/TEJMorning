@@ -132,15 +132,17 @@ void changeLights() {
   analogWrite(r,200);  
   analogWrite(g,255);
   analogWrite(b,0);
-    lcd.clear();
-  lcd.setCursor(0,1);
-  lcd.write(byte(0));
+
 
   delay(5000);
 
   lcd.clear();
   lcd.setCursor(0,1);
   lcd.write(byte(0));
+  analogWrite(r,0);  
+  analogWrite(g,0);
+  analogWrite(b,0);
+  delay(10000);
 
    for(int i = 10; i > 0; i--){
   digitalWrite(buzzer, HIGH);
@@ -148,16 +150,14 @@ void changeLights() {
   lcd.setCursor(0,1);
   lcd.write(byte(1));
   lcd.setCursor(0,0);
-  analogWrite(r,0);  
-  analogWrite(g,0);
-  analogWrite(b,0);
+
   lcd.print(i);
-  delay(300);
+  delay(600);
   lcd.clear();
   lcd.setCursor(0,0);
   lcd.print(i);
   digitalWrite(buzzer, LOW);
-  delay(200);
+  delay(400);
   }
   
   
