@@ -11,9 +11,9 @@ int buzzer = 13;
 
 int button = 6;
 
-int r = A3;
+int r = A5;
 int g = A4;
-int b = A5;
+int b = A3;
 
 boolean buzzerOn;
 
@@ -120,6 +120,7 @@ void changeLights() {
 
   digitalWrite(red, LOW);
   digitalWrite(green, HIGH);
+
   analogWrite(r,0);  
   analogWrite(g,255);
   analogWrite(b,0);
