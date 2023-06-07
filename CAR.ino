@@ -4,6 +4,7 @@
 #define ServoPinRight 8
 
 
+
 Servo Servo1;
 Servo Servo2;
 int pos = 0;
@@ -12,6 +13,12 @@ int SensorValRight = 0;
 float PulseLength = 0.0;
 const float Period = 0.02;
 float DutyCycle = 0.0;
+
+int buzzer = A1;
+
+int leftLight = 4;
+int rightLight = 5;
+
 
 int trigPin = 13;    // TRIG pin
 int echoPin = 12;    // ECHO pin
@@ -22,6 +29,11 @@ void setup() {
   Servo1.attach(ServoPinLeft);
   Servo2.attach(ServoPinRight);
 
+  pinMode(buzzer, OUTPUT);
+  
+  pinMode(rightLight, OUTPUT);
+  
+  pinMode(leftLight, OUTPUT);
   
   Serial.begin(9600);
 
@@ -31,10 +43,13 @@ void setup() {
   pinMode(echoPin, INPUT);
 
 
+
+
 }
 
 void loop() {
   
+
 
 
 
@@ -49,31 +64,38 @@ void loop() {
   // calculate the distance
   float distance_cm = 0.017 * duration_us;
 
-  // print the value to Serial Monitor
+  /* print the value to Serial Monitor
   Serial.print("distance: ");
   Serial.print(distance_cm);
-  Serial.println(" cm");
+  Serial.println(" cm");*/
 
   delay(500);
 
- if(distance_cm < 10 || distance_cm > 1100){
+ if(distance_cm < 20 || distance_cm > 1100){
   
   //0 = backward
   //1000 = forward
   //525 = stay still
   
-  SensorValLeft = 1000;
+  SensorValLeft = 0;
 
   //0 = forward
   //1000 = backward
   //525 = stay still
 
-  SensorValRight = 1000;
+  SensorValRight = 0;
+
+  tone(buzzer, 10000, 500);
+
+  digitalWrite(leftLight, HIGH);
+    digitalWrite(rightLight, LOW);
+
 
   }
 
   else{
-
+  digitalWrite(leftLight, HIGH);
+    digitalWrite(rightLight, HIGH);
   //0 = backward
   //1000 = forward
   //525 = stay still
@@ -85,7 +107,7 @@ void loop() {
   //525 = stay still
 
   SensorValRight = 0;
-    
+    noTone(buzzer);
     
   }
 
@@ -96,5 +118,8 @@ void loop() {
 
 
   DutyCycle = -((PulseLength / pow(10,6)) / Period) * 100;
+
+
+
 
 }
