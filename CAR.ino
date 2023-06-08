@@ -71,7 +71,7 @@ void loop() {
 
   delay(500);
 
- if(distance_cm < 20 || distance_cm > 1100){
+ if(distance_cm < 20){
   
   //0 = backward
   //1000 = forward
@@ -92,7 +92,24 @@ void loop() {
 
 
   }
+  else if(distance_cm > 1100){
 
+      digitalWrite(leftLight, HIGH);
+    digitalWrite(rightLight, HIGH);
+      tone(buzzer, 10000, 500);
+  //0 = backward
+  //1000 = forward
+  //525 = stay still
+  
+  SensorValLeft = 0;
+
+  //0 = forward
+  //1000 = backward
+  //525 = stay still
+
+  SensorValRight = 1000;
+
+  }
   else{
   digitalWrite(leftLight, HIGH);
     digitalWrite(rightLight, HIGH);
