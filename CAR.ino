@@ -8,17 +8,21 @@
 Servo Servo1;
 Servo Servo2;
 int pos = 0;
+int pos2 = 0;
 int SensorValLeft = 0;
 int SensorValRight = 0;
 float PulseLength = 0.0;
 const float Period = 0.02;
 float DutyCycle = 0.0;
 
+int lineSensor = 7;
+
 int buzzer = A1;
 
 int leftLight = 4;
 int rightLight = 5;
 
+float backwardsTimer = 0;
 
 int trigPin = 13;    // TRIG pin
 int echoPin = 12;    // ECHO pin
@@ -42,7 +46,7 @@ void setup() {
   // configure the echo pin to input mode
   pinMode(echoPin, INPUT);
 
-
+  pinMode(lineSensor, OUTPUT);
 
 
 }
@@ -51,7 +55,7 @@ void loop() {
   
 
 
-
+  Serial.println(digitalRead(lineSensor));
 
   // generate 10-microsecond pulse to TRIG pin
   digitalWrite(trigPin, HIGH);
@@ -70,8 +74,28 @@ void loop() {
   Serial.println(" cm");*/
 
   delay(500);
+  if(backwardsTimer > 0){
+    
+      digitalWrite(leftLight, HIGH);
+    digitalWrite(rightLight, HIGH);
+      tone(buzzer, 10000, 500);
+  //0 = backward
+  //1000 = forward
+  //525 = stay still
+  
+  SensorValLeft = 0;
 
- if(distance_cm < 20){
+  //0 = forward
+  //1000 = backward
+  //525 = stay still
+
+  SensorValRight = 1000;
+
+    backwardsTimer -= 1;
+    delay(100);
+  
+  }
+ else if(distance_cm < 20 && distance_cm >= 10){
   
   //0 = backward
   //1000 = forward
@@ -92,22 +116,8 @@ void loop() {
 
 
   }
-  else if(distance_cm > 1100){
-
-      digitalWrite(leftLight, HIGH);
-    digitalWrite(rightLight, HIGH);
-      tone(buzzer, 10000, 500);
-  //0 = backward
-  //1000 = forward
-  //525 = stay still
-  
-  SensorValLeft = 0;
-
-  //0 = forward
-  //1000 = backward
-  //525 = stay still
-
-  SensorValRight = 1000;
+  else if(distance_cm < 10){
+    backwardsTimer = 3;
 
   }
   else{
@@ -119,7 +129,8 @@ void loop() {
   
   SensorValLeft = 1000;
 
-  //0 = forward
+  //0 = forward.
+  
   //1000 = backward
   //525 = stay still
 
@@ -130,12 +141,11 @@ void loop() {
 
   pos = map(SensorValLeft, 0, 1023, 0, 180);
   Servo1.write(pos);
-  pos = map(SensorValRight, 0, 1023, 0, 180);
-  Servo2.write(pos);
+  pos2 = map(SensorValRight, 0, 1023, 0, 180);
+  Servo2.write(pos2);
 
 
   DutyCycle = -((PulseLength / pow(10,6)) / Period) * 100;
-
 
 
 
