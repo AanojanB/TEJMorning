@@ -101,6 +101,10 @@ void loop() {
   //1000 = forward
   //525 = stay still
   
+  delay(5);
+
+  if(distance_cm < 20 && distance_cm >= 10){
+
   SensorValLeft = 0;
 
   //0 = forward
@@ -113,11 +117,13 @@ void loop() {
 
   digitalWrite(leftLight, HIGH);
     digitalWrite(rightLight, LOW);
-
+  }
 
   }
   else if(distance_cm < 10){
-    backwardsTimer = 3;
+    delay(5);
+    if(distance_cm < 10){    
+    backwardsTimer = 3;}
 
   }
   else{
