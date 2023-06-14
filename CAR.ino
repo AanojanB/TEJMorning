@@ -15,6 +15,8 @@ float PulseLength = 0.0;
 const float Period = 0.02;
 float DutyCycle = 0.0;
 
+bool on = false;
+
 int lineSensor = 7;
 
 int buzzer = A1;
@@ -27,6 +29,7 @@ float backwardsTimer = 0;
 int trigPin = 12;    // TRIG pin
 int echoPin = 13;    // ECHO pin
 
+int button = 7;
 
 void setup() {
   
@@ -46,6 +49,8 @@ void setup() {
   // configure the echo pin to input mode
   pinMode(echoPin, INPUT);
 
+    pinMode(button, INPUT);
+
   pinMode(lineSensor, OUTPUT);
 
 
@@ -53,9 +58,9 @@ void setup() {
 
 void loop() {
   
+  if(on){
 
 
-  Serial.println(digitalRead(lineSensor));
 
   // generate 10-microsecond pulse to TRIG pin
   digitalWrite(trigPin, HIGH);
@@ -145,6 +150,16 @@ void loop() {
     
   }
 
+
+  }
+  if(!on){
+    
+  SensorValLeft = 525;
+
+
+  SensorValRight = 525;
+  }
+
   pos = map(SensorValLeft, 0, 1023, 0, 180);
   Servo1.write(pos);
   pos2 = map(SensorValRight, 0, 1023, 0, 180);
@@ -152,7 +167,19 @@ void loop() {
 
 
   DutyCycle = -((PulseLength / pow(10,6)) / Period) * 100;
+    Serial.println(on);
 
+    if(digitalRead(button) == HIGH){
+
+      //delay(15);
+
+        
+    if(on)on = false;
+    else{on = true;}      
+
+    
+
+  }
 
 
 }
