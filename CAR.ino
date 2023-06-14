@@ -20,12 +20,12 @@ int lineSensor = 7;
 int buzzer = A1;
 
 int leftLight = 4;
-int rightLight = 5;
+int rightLight = 5; 
 
 float backwardsTimer = 0;
 
-int trigPin = A4;    // TRIG pin
-int echoPin = A5;    // ECHO pin
+int trigPin = 12;    // TRIG pin
+int echoPin = 13;    // ECHO pin
 
 
 void setup() {
