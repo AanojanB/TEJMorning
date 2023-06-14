@@ -24,8 +24,8 @@ int rightLight = 5;
 
 float backwardsTimer = 0;
 
-int trigPin = 2;    // TRIG pin
-int echoPin = 1;    // ECHO pin
+int trigPin = A4;    // TRIG pin
+int echoPin = A5;    // ECHO pin
 
 
 void setup() {
