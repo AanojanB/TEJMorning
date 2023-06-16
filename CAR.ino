@@ -179,7 +179,14 @@ void loop() {
   //if the on button is pressed the robot will turn on
   if(digitalRead(button) == HIGH){
 
-    on = !on;  
+    //debouncing the button
+    delay(15);
+
+    if(digitalRead(button) == HIGH){
+      
+      on = !on;  
+    
+    }
 
   }
 
