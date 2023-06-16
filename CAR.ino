@@ -132,8 +132,16 @@ void loop() {
   //checking if there is an obstacle directly in front of the arduino
   else if(distance_cm < 10){
     
-    //setting the backwards timer to 3 will cause the robot to go backwards for 3 seconds
-    backwardsTimer = 3;
+    //debouncing the sensor
+
+    delay(10);    
+
+    if(distance_cm < 10){
+
+      //setting the backwards timer to 3 will cause the robot to go backwards for 3 seconds
+      backwardsTimer = 3;
+
+    }
 
   }
 
@@ -167,6 +175,20 @@ void loop() {
   //keeping the right wheel still
   SensorValRight = 545;
 
+    //if the on button is pressed the robot will turn on
+  if(digitalRead(button) == HIGH){
+
+    //debouncing the button
+    delay(15);
+
+    if(digitalRead(button) == HIGH){
+      
+      on = !on;  
+      
+    }
+
+  }
+
   }  
  
   //sending a signal to both servos 
@@ -176,19 +198,7 @@ void loop() {
   Servo2.write(pos2);
   DutyCycle = -((PulseLength / pow(10,6)) / Period) * 100;
   
-  //if the on button is pressed the robot will turn on
-  if(digitalRead(button) == HIGH){
 
-    //debouncing the button
-    delay(15);
-
-    if(digitalRead(button) == HIGH){
-      
-      on = !on;  
-    
-    }
-
-  }
 
 
 }
